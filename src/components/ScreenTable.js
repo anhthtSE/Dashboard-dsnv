@@ -178,12 +178,22 @@ import { EllipsisOutlined,
 
 const ScreenTable = () => {
     return(
-        <>                        
-            <Table columns={columns} dataSource={data} 
-                        scroll={{ x: 1800, y: 300}}
-                        pagination={{ pageSize: 6 }}
-                        style={{width: '100%'}}
-            />
+        <>      
+            <div
+                style={{
+                    padding: 24,
+                    minHeight: 100,
+                    margin: '20 0px',
+                    background: 'white',
+                }}
+                    
+            >
+                <Table columns={columns} dataSource={data} 
+                            scroll={{ x: 1800, y: 300}}
+                            pagination={{ pageSize: 6 }}
+                            style={{width: '100%'}}
+                />
+            </div>                  
                 
         </>
 

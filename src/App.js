@@ -9,8 +9,8 @@ import {
 
 // component
 import Navbar from './components/Navbar';
-import EmployeeList from './page/EmployeeList';
-import DepartmentList from './page/DepartmentList';
+import DepartmentTable from '../src/components/ScreenTable'
+import EmployeeTable from './components/ScreenAllMember'
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -63,24 +63,22 @@ const App = () => {
                 textAlign: 'right',
               }}
               >
-              
-
-              <div
+              {/* <div
                 style={{
                   padding: 24,
                   minHeight: 100,
                   margin: '20 0px',
                   background: colorBgContainer,
                 }}
-                >
+                > */}
                   {/* ==============<Screen>=============== */}
                 <Routes>
-                  <Route path='/employee-list' element={<EmployeeList/>}/>
-                  <Route path='/employee-list:selectedService' element={<DepartmentList/>}/>
+                  <Route path='/pb' element={<DepartmentTable/>}/>
+                  <Route path='/tbnv' element={<EmployeeTable/>}/>
                 </Routes>
                 
 
-              </div>
+              {/* </div> */}
             </Content>
             {/* =============Content End========== */}
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Space,Table, Badge, Avatar, Tag } from 'antd';
+import { Space,Table, Badge, Avatar, Tag, Card, Button, Row, Col, Input, Dropdown, message } from 'antd';
 import { 
     EllipsisOutlined,
     UserOutlined,
@@ -9,7 +9,10 @@ import {
     BankOutlined,
     EnvironmentOutlined,
     CalendarOutlined,
-    GlobalOutlined
+    GlobalOutlined,
+    LogoutOutlined,
+    DownOutlined,
+    PlusOutlined
  } from '@ant-design/icons';
 
 const data = [
@@ -254,18 +257,71 @@ const data = [
 
 ];
 
+    const items = [
+        {
+            label: 'Toàn bộ phòng ban',
+            key: '1',
+        },
+    ];
+
+    const handleMenuClick = (e) => {
+        message.info('Click on menu item.');
+        console.log('click', e);
+    };
+
+    const menuProps = {
+        items,
+        onClick: handleMenuClick,
+    };
+
 
 
 
 const ScreenAllMember = () => {
+    
     return(
         <>
-            
-            <Table columns={columns} dataSource={data} 
-                        scroll={{ x: 1800, y: 300}}
-                        pagination={{ pageSize: 6 }}
-                        style={{width: '100%'}}
-            />
+            <div>
+                <Card>
+                    <Row justify="start">
+                        <Col span={2}>
+                            {/* <Search style={{ width: 200 }} placeholder="Tìm kiếm" enterButton /> */}
+                            <Input placeholder="Tìm kiếm" style={{ width: 200, border: 'none', boxShadow: '0 2px' }} />
+                        </Col>
+
+                        <Col span={12}>
+                            <Dropdown menu={menuProps}>
+                                <Button>
+                                    <Space>
+                                        Toàn bộ phòng ban
+                                        <DownOutlined />
+                                    </Space>
+                                </Button>
+                            </Dropdown>
+                            <Button type="default" style={{ border: 'solid lightgreen', color: 'lightgreen' }}>Làm mới</Button>
+                        </Col>
+
+                        <Col span={10}>
+                            <Button style={{ float: 'right' }} type='primary'><PlusOutlined />Thêm nhân viên</Button>
+                        </Col>
+                    </Row>
+
+                </Card>
+            </div>
+            <div
+                style={{
+                    padding: 24,
+                    minHeight: 100,
+                    margin: '20 0px',
+                    background: 'white',
+                  }}
+            >
+                <Table columns={columns} dataSource={data} 
+                            scroll={{ x: 1800, y: 300}}
+                            pagination={{ pageSize: 6 }}
+                            style={{width: '100%'}}
+                />
+            </div>
             
         </>
 
