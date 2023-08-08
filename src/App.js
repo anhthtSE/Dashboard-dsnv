@@ -1,14 +1,17 @@
 import React from 'react';
-// import Dashboard from './page/Dashboard';
+import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom'
 import { ArrowRightOutlined, PlusOutlined } from '@ant-design/icons';
 import { 
   Layout, 
   Button, 
   Typography,
   theme } from 'antd';
+
 // component
 import Navbar from './components/Navbar';
-import ScreenTable from './components/ScreenTable';
+import EmployeeList from './page/EmployeeList';
+import DepartmentList from './page/DepartmentList';
+
 const { Header, Content, Footer, Sider } = Layout;
 
 const { Title} = Typography;
@@ -20,7 +23,7 @@ const App = () => {
   } = theme.useToken();
 
   return (
-    <>
+    <Router>
       <Layout
         style={{
         // width: 256,
@@ -60,22 +63,21 @@ const App = () => {
                 textAlign: 'right',
               }}
               >
-              <Button style={{
-                backgroundColor: 'blue',
-                color: 'white',
-              }}
-              >
-                <PlusOutlined /> Thêm nhân viên
-            </Button>
+              
 
               <div
                 style={{
                   padding: 24,
                   minHeight: 100,
+                  margin: '20 0px',
                   background: colorBgContainer,
                 }}
                 >
-                  <ScreenTable/>
+                  {/* ==============<Screen>=============== */}
+                <Routes>
+                  <Route path='/employee-list' element={<EmployeeList/>}/>
+                  <Route path='/employee-list:selectedService' element={<DepartmentList/>}/>
+                </Routes>
                 
 
               </div>
@@ -93,7 +95,7 @@ const App = () => {
 
 
       </Layout>
-    </>
+    </Router>
   );
 }
 

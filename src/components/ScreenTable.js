@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {  Space, Table, Badge, Avatar} from 'antd';
+import React from 'react';
+import { Table, Badge, Avatar, Button} from 'antd';
 import { EllipsisOutlined,
     UserOutlined,
     MailOutlined,
@@ -7,6 +7,7 @@ import { EllipsisOutlined,
     ArrowUpOutlined,
     MoreOutlined,
     NumberOutlined,
+    PlusOutlined,
 } from '@ant-design/icons';
 
 // import '../styles/ScreenTable.css';
@@ -76,8 +77,8 @@ import { EllipsisOutlined,
         managerPhone: '123456789',
         },
         {
-        key: '1',
-        id: '1',
+        key: '9',
+        id: '9',
         departmentName: 'Phòng A',
         manager: 'Nguyễn Văn A',
         employeeCount: 10,
@@ -87,6 +88,10 @@ import { EllipsisOutlined,
         // Add more data here
     ];
 
+    const getRandomColor = () => {
+        const colors = ['#f50', '#2db7f5', '#87d068', '#108ee9', '#eb2f96', '#52c41a', '#1890ff'];
+        return colors[Math.floor(Math.random() * colors.length)];
+      };
 
     const columns = [
         {
@@ -105,7 +110,7 @@ import { EllipsisOutlined,
         {
             title: (
                         <span>
-                            <UserOutlined style={{ borderRadius: '50%', border: '1px solid'}}/> Tên Phòng Ban
+                            <Avatar size={'small'}><UserOutlined/></Avatar> Tên Phòng Ban
                         </span>
                     ),
             dataIndex: 'departmentName',
@@ -115,7 +120,7 @@ import { EllipsisOutlined,
             render: (text) => (
                 <>
                 <span >
-                    <Badge status='default' text={text} />
+                    <Badge color={getRandomColor()} text={text} />
                 </span>
                 </>
             )
@@ -124,7 +129,7 @@ import { EllipsisOutlined,
                 title: (
                     <div style={{display: 'flex', justifyContent: 'space-between'}}>
                         <span>
-                            <UserOutlined style={{ borderRadius: '50%', border: '1px solid'}}/> Quản lý <ArrowUpOutlined/>
+                            <Avatar size={'small'}><UserOutlined/></Avatar> Quản lý <ArrowUpOutlined/>
                         </span>
                         <MoreOutlined/>
                     </div>
@@ -135,7 +140,7 @@ import { EllipsisOutlined,
                 render:  (text) => (
                     <>
                         <span >
-                            <Avatar>{text.charAt(0)}</Avatar>
+                            <Avatar style={{backgroundColor: getRandomColor()}}>{text.charAt(0)}</Avatar>
                             <span style={{ marginLeft: '8px' }}>{text}</span>
                         </span>
                     </>
@@ -173,13 +178,13 @@ import { EllipsisOutlined,
 
 const ScreenTable = () => {
     return(
-        <>
-            <div style={{ width: '1500px', margin: '0 auto'}}>
-                <Table columns={columns} dataSource={data} 
-                            scroll={{ x: 1800, y: 300}}
-                            pagination={{ pageSize: 6 }}/>
+        <>                        
+            <Table columns={columns} dataSource={data} 
+                        scroll={{ x: 1800, y: 300}}
+                        pagination={{ pageSize: 6 }}
+                        style={{width: '100%'}}
+            />
                 
-            </div>
         </>
 
     );

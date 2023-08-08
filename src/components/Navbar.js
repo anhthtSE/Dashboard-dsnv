@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     HomeOutlined,
     TeamOutlined,
@@ -7,6 +7,7 @@ import {
     ClockCircleOutlined,
 } from '@ant-design/icons';
 import { Menu, Avatar} from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const getItems = (label, key, icon, children, type) =>{
     return{
@@ -18,11 +19,11 @@ const getItems = (label, key, icon, children, type) =>{
     };
 }
 
-const items = [
+const MenuData = [
     getItems('Administrator','sub0', <Avatar shape="square" src="https://xsgames.co/randomusers/avatar.php?g=pixel&key=1"/>),
 
     getItems('Dashboard', '1', <HomeOutlined />),
-        getItems('NHÂN VIÊN', 'sub1', null, [
+    getItems('NHÂN VIÊN', 'sub1', null, [
         getItems('Phòng Ban', '2', <TeamOutlined/>),
         getItems('Phòng Ban của tôi', '3', <TeamOutlined/>),
         getItems('Toàn Bộ Nhân Viên', '4', <TeamOutlined/>),
@@ -55,25 +56,35 @@ const items = [
       
 ];
 
-
-
 const Navbar = () => {
-    const onClick = (e) =>{
-        console.log('click', e);
-    }
+    const storedKey = localStorage.getItem('selectedKey');
+    const [selectedKey, setSelectedKey] = useState("");
+    const navigate = useNavigate();
+
+    const handleMenuClick = ({key}) => {
+        setSelectedKey(key);
+        console.log("key: ", selectedKey)
+        // localStorage.setItem('selectedKey', key)
+        if (Number.parseInt(selectedKey) > 1 && Number.parseInt(selectedKey) < 6) {
+            navigate(`/employee-list:${selectedKey}`);
+        }
+      };
 
     return (
         <Menu
-            onClick={onClick}
-            // style={{
-            //     width: 256,
-            // }}
+            onClick={handleMenuClick}
             theme='light'
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
+            // defaultSelectedKeys={[selectedKey]}
+            // defaultOpenKeys={[selectedKey]}
             mode='inline'
-            items={items}
-        />
+            items = {MenuData}
+        >
+            {MenuData.map((item) =>(
+                <Menu.Item key={item.key}>
+                    {item.label}
+                </Menu.Item>
+            ))}
+        </Menu>
     )
 }
 
