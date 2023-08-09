@@ -116,8 +116,6 @@ const Navbar = () => {
                     width: '100%',
                     height: '100%',
                 }}
-                defaultSelectedKeys={['2','3']}
-                defaultOpenKeys={['sub1']}
                 mode="inline"
                 items={items}
             >       

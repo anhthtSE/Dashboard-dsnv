@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Badge, Avatar, Button} from 'antd';
+import { Table, Badge, Avatar, Button, theme} from 'antd';
 import { EllipsisOutlined,
     UserOutlined,
     MailOutlined,
@@ -8,6 +8,7 @@ import { EllipsisOutlined,
     MoreOutlined,
     NumberOutlined,
     PlusOutlined,
+    ArrowRightOutlined,
 } from '@ant-design/icons';
 
 // import '../styles/ScreenTable.css';
@@ -175,16 +176,24 @@ import { EllipsisOutlined,
                 },
     ];
 
+    
+    const ScreenTable = () => {
 
-const ScreenTable = () => {
     return(
-        <>      
+        <>    
+            <Button
+                style={{ 
+                    backgroundColor: '#1677ff',
+                    color: 'white'
+                }}
+            >
+                <PlusOutlined/> Thêm phòng ban    
+            </Button>  
             <div
                 style={{
                     padding: 24,
                     minHeight: 100,
-                    margin: '20 0px',
-                    background: 'white',
+                    backgroundColor: 'white'
                 }}
                     
             >
