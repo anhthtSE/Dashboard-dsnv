@@ -10,9 +10,9 @@ import {
     EnvironmentOutlined,
     CalendarOutlined,
     GlobalOutlined,
-    LogoutOutlined,
     DownOutlined,
-    PlusOutlined
+    PlusOutlined,
+    CreditCardOutlined
  } from '@ant-design/icons';
 
 const data = [
@@ -125,7 +125,7 @@ const data = [
     };
     
     const getRandomColorByID = () => {
-        const colors = ['gray', 'blue'];
+        const colors = ['gray', '#1677ff'];
         return colors[Math.floor(Math.random() * colors.length)];
     };
 
@@ -135,7 +135,7 @@ const data = [
         dataIndex: 'more',
         key: 'more',
         render: () => <EllipsisOutlined/>,
-        width: 50,    
+      
     },
     {
         title: '',
@@ -144,18 +144,25 @@ const data = [
         render: () => (
             <Avatar style={{ backgroundColor: getRandomColorByID()}} size={'small'}><UserOutlined/></Avatar>
         ),
-        width: 50, 
+        
     },
     {
         title: 'ID',
         dataIndex: 'id',
         key: 'id',
-        width: 70,
     },
     {
-        title: 'Tên Nhân Viên',
+        title: (
+            <>
+                <Space >
+                    <UnorderedListOutlined type='primary'/>
+                    <span className="th-content" >Tên Nhân Viên</span>
+                </Space>
+            </>
+        ),
         dataIndex: 'manager',
         key: 'manager',
+       
         render: (text) => (
             <>
                 <Space>
@@ -166,9 +173,16 @@ const data = [
         ),
     },
     {
-        title: 'Phòng ban',
+        title: (
+            <>
+                <Space>
+                    <UnorderedListOutlined type='primary'/><span className="th-content">Phòng ban</span>
+                </Space>
+            </>
+        ),
         dataIndex: 'departmentName',
         key: 'departmentName',
+        width: 'auto',
         render: (text) => (
             <>
                 <Space>
@@ -179,18 +193,24 @@ const data = [
     },
     {
         title: (
-            <span >
-                <PhoneOutlined /> Số Điện thoại
-            </span>
+            <>
+                <Space>
+                    <PhoneOutlined type='primary'/> 
+                    <span className="th-content">Số điện thoại</span>
+                </Space>
+            </>
         ),
         dataIndex: 'managerPhone',
         key: 'managerPhone',
+        width: 'auto',
     },
     {
         title: (
-            <span>
-                <UnorderedListOutlined/> Giới Tính
-            </span>
+            <>
+                <Space>
+                    <UserOutlined type='primary' /><span className="th-content">Giới tính</span>
+                </Space>
+            </>
         ),
         dataIndex: 'gender',
         key: 'gender',
@@ -202,55 +222,37 @@ const data = [
     },
     {
         title: (
-            <span>
-                <MailOutlined/> Mail
-            </span>
+            <>
+                <Space>
+                    <MailOutlined type='primary' /><span className="th-content">Email</span>
+                </Space>
+            </>
         ),
         dataIndex: 'managerEmail',
         key: 'managerEmail',
     },
     {
-        title: (
-            <span>
-                <BankOutlined/> Ngân hàng
-            </span>
-        ),
+        title: <Space><BankOutlined type='primary'/><span className="th-content">Ngân Hàng</span></Space>,
         dataIndex: 'bank',
         key: 'bank',
     },
     {
-        title: (
-            <span>
-                <CalendarOutlined/> Ngày sinh
-            </span>
-        ),
+        title: <Space><CalendarOutlined type='primary'/><span className="th-content">Ngày Sinh</span></Space>,
         dataIndex: 'Address',
         key: 'Address',
     },
     {
-        title: (
-            <span>
-                <EnvironmentOutlined/> Địa chỉ
-            </span>
-        ),
+        title: <Space><EnvironmentOutlined type='primary'/><span className="th-content">Địa chỉ</span></Space>,
         dataIndex: 'Address',
         key: 'Address',
     },
     {
-        title: (
-            <span>
-                <GlobalOutlined/> Quốc Gia
-            </span>
-        ),
+        title:<Space><GlobalOutlined type='primary'/><span className="th-content">Quốc gia</span></Space>,
         dataIndex: 'Nation',
         key: 'Nation',
     },
     {
-        title: (
-            <span>
-                # TK Ngân Hàng
-            </span>
-        ),
+        title: <Space><CreditCardOutlined type='primary'/><span className="th-content">TK Ngân Hàng</span></Space>,
         dataIndex: 'Credit',
         key: 'Credit',
     }
@@ -286,19 +288,21 @@ const ScreenAllMember = () => {
                     <Row justify="start">
                         <Col span={2}>
                             {/* <Search style={{ width: 200 }} placeholder="Tìm kiếm" enterButton /> */}
-                            <Input placeholder="Tìm kiếm" style={{ width: 200, border: 'none', boxShadow: '0 2px' }} />
+                            <Input placeholder="Tìm kiếm" bordered={false} style={{ width: 'auto', borderBottom: '1px solid #000', borderRadius: 0}}/>
                         </Col>
 
                         <Col span={12}>
-                            <Dropdown menu={menuProps}>
-                                <Button>
-                                    <Space>
-                                        Toàn bộ phòng ban
-                                        <DownOutlined />
-                                    </Space>
-                                </Button>
-                            </Dropdown>
-                            <Button type="default" style={{ border: 'solid lightgreen', color: 'lightgreen' }}>Làm mới</Button>
+                            <Space>
+                                <Dropdown menu={menuProps}>
+                                    <Button>
+                                        <Space>
+                                            Toàn bộ phòng ban
+                                            <DownOutlined />
+                                        </Space>
+                                    </Button>
+                                </Dropdown>
+                                <Button type="default" style={{ border: 'solid lightgreen', color: 'lightgreen' }}>Làm mới</Button>
+                            </Space>
                         </Col>
 
                         <Col span={10}>
@@ -312,14 +316,15 @@ const ScreenAllMember = () => {
                 style={{
                     padding: 24,
                     minHeight: 100,
-                    margin: '20 0px',
+                    margin: '0 20',
                     background: 'white',
                   }}
             >
-                <Table columns={columns} dataSource={data} 
+                <Table 
+                            columns={columns} dataSource={data} 
                             scroll={{ x: 1800, y: 300}}
                             pagination={{ pageSize: 6 }}
-                            style={{width: '100%'}}
+                            tableLayout="column.elipsis" 
                 />
             </div>
             

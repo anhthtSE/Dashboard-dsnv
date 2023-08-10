@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './App.css';
 import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom'
 import { ArrowRightOutlined, PlusOutlined } from '@ant-design/icons';
 import { 
@@ -18,6 +19,7 @@ const { Title} = Typography;
 
 
 const App = () => {
+
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -26,16 +28,13 @@ const App = () => {
     <Router>
       <Layout
         style={{
-        // width: 256,
           minHeight: '100vh',
         }}
       >
         {/* Navigation */}
-        <Sider theme='light' collapsible>
-          <div className="demo-logo-vertical" />
-          <Navbar/>
-        </Sider>
-          
+        <Sider theme='light' width={'290'} style={{overflow: 'auto', height: '100vh',}} >
+            <Navbar />
+        </Sider>          
           {/* Content, Header, Footer */}
         <Layout>
 
@@ -63,22 +62,11 @@ const App = () => {
                 textAlign: 'right',
               }}
               >
-              {/* <div
-                style={{
-                  padding: 24,
-                  minHeight: 100,
-                  margin: '20 0px',
-                  background: colorBgContainer,
-                }}
-                > */}
                   {/* ==============<Screen>=============== */}
                 <Routes>
                   <Route path='/pb' element={<DepartmentTable/>}/>
                   <Route path='/tbnv' element={<EmployeeTable/>}/>
                 </Routes>
-                
-
-              {/* </div> */}
             </Content>
             {/* =============Content End========== */}
 

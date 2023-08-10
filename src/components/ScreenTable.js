@@ -1,23 +1,22 @@
 import React from 'react';
-import { Table, Badge, Avatar, Button, theme} from 'antd';
-import { EllipsisOutlined,
+import { Table, Badge, Avatar, Button, Space, Typography} from 'antd';
+import {
     UserOutlined,
     MailOutlined,
     PhoneOutlined,
     ArrowUpOutlined,
     MoreOutlined,
-    NumberOutlined,
     PlusOutlined,
-    ArrowRightOutlined,
+    EllipsisOutlined,
+    NumberOutlined,
 } from '@ant-design/icons';
 
-// import '../styles/ScreenTable.css';
 
     const data = [
         {
         key: '1',
         id: '1',
-        departmentName: 'Phòng A',
+        departmentName: 'Phòng Sale',
         manager: 'Nguyễn Văn A',
         employeeCount: 10,
         managerEmail: 'a@example.com',
@@ -26,7 +25,7 @@ import { EllipsisOutlined,
         {
         key: '2',
         id: '2',
-        departmentName: 'Phòng A',
+        departmentName: 'Phòng Marketing',
         manager: 'Nguyễn Văn A',
         employeeCount: 10,
         managerEmail: 'a@example.com',
@@ -35,7 +34,7 @@ import { EllipsisOutlined,
         {
         key: '3',
         id: '3',
-        departmentName: 'Phòng A',
+        departmentName: 'Phòng Design',
         manager: 'Nguyễn Văn A',
         employeeCount: 10,
         managerEmail: 'a@example.com',
@@ -99,48 +98,49 @@ import { EllipsisOutlined,
             title: '',
             dataIndex: 'more',
             key: 'more',
-            render: () => <EllipsisOutlined/>,
-            width: 50,            
+            render: () => <EllipsisOutlined />,
         },
         {
             title: 'ID',
             dataIndex: 'id',
             key: 'id',
-            width: 70,
         },
         {
             title: (
-                        <span>
-                            <Avatar size={'small'}><UserOutlined/></Avatar> Tên Phòng Ban
-                        </span>
+                        <Space>
+                            <Avatar size={'small'}><UserOutlined type='primary'/></Avatar>
+                            <span className="th-content">Tên phòng ban</span>
+                        </Space>
                     ),
             dataIndex: 'departmentName',
             key: 'departmentName',
-            
-            ellipsis: true,
             render: (text) => (
                 <>
-                <span >
-                    <Badge color={getRandomColor()} text={text} />
+                <span>
+                    <Badge className='th-content' color={getRandomColor()} text={text} />
                 </span>
                 </>
             )
         },
         {
                 title: (
-                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                        <span>
-                            <Avatar size={'small'}><UserOutlined/></Avatar> Quản lý <ArrowUpOutlined/>
-                        </span>
-                        <MoreOutlined/>
-                    </div>
+                    <Space style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <div>
+                            <Space>
+                                <Avatar size={'small'}><UserOutlined type='primary'/></Avatar> 
+                                Quản lý 
+                                <ArrowUpOutlined/>
+                            </Space>
+                        </div>
+                            <MoreOutlined/>
+                    </Space>
                 ),
                 dataIndex: 'manager',
                 key: 'manager',
                 ellipsis: true,
                 render:  (text) => (
                     <>
-                        <span >
+                        <span className='th-content' >
                             <Avatar style={{backgroundColor: getRandomColor()}}>{text.charAt(0)}</Avatar>
                             <span style={{ marginLeft: '8px' }}>{text}</span>
                         </span>
@@ -149,27 +149,30 @@ import { EllipsisOutlined,
         },
         {
                 title: (
-                    <span>
-                        # Số Nhân Viên
-                    </span>
+                    <Space>
+                        <NumberOutlined />
+                        <span type='primary' className="th-content">Số nhân viên</span>
+                    </Space>
                 ),
                 dataIndex: 'employeeCount',
                 key: 'employeeCount',
                 },
                 {
                 title: (
-                    <span >
-                    <MailOutlined /> Email quản lý
-                    </span>
+                    <Space >
+                        <MailOutlined type='primary'/>
+                        <span className="th-content">Email quản lý</span>
+                    </Space>
                 ),
                 dataIndex: 'managerEmail',
                 key: 'managerEmail',
                 },
                 {
                 title:(
-                    <span>
-                        <PhoneOutlined /> Số điện thoại
-                    </span>
+                    <Space>
+                        <PhoneOutlined type='primary'/> 
+                        <span className="th-content">Số điện thoại</span>
+                    </Space>
                 ),
                 dataIndex: 'managerPhone',
                 key: 'managerPhone',
@@ -192,6 +195,7 @@ import { EllipsisOutlined,
             <div
                 style={{
                     padding: 24,
+                    margin: '10px 0px',
                     minHeight: 100,
                     backgroundColor: 'white'
                 }}
@@ -199,8 +203,8 @@ import { EllipsisOutlined,
             >
                 <Table columns={columns} dataSource={data} 
                             scroll={{ x: 1800, y: 300}}
-                            pagination={{ pageSize: 6 }}
-                            style={{width: '100%'}}
+                            pagination={ true }
+                            tableLayout="column.elipsis"
                 />
             </div>                  
                 
