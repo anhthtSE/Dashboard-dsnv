@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     HomeOutlined,
     TeamOutlined,
@@ -6,9 +6,10 @@ import {
     MailOutlined,
     ClockCircleOutlined,
 } from '@ant-design/icons';
+
 import { Menu, Avatar, Card} from 'antd';
 import Meta from 'antd/es/card/Meta';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import SubMenu from 'antd/es/menu/SubMenu';
 
 
@@ -76,25 +77,26 @@ const Navbar = () => {
     const [selectedKey, setSelectedKey] = useState(localStorage.getItem('selectedKey') || null);
     const [openKeys, setOpenKeys] = useState(JSON.parse(localStorage.getItem('openKeys')) || []);
 
-  useEffect(() => {
-    if (selectedKey) {
-      localStorage.setItem('selectedKey', selectedKey);
-    }
-  }, [selectedKey]);
+    useEffect(() => {
+        if (selectedKey) {
+        localStorage.setItem('selectedKey', selectedKey);
+        }
+    }, [selectedKey]);
 
-  useEffect(() => {
-    if (openKeys.length > 0) {
-      localStorage.setItem('openKeys', JSON.stringify(openKeys));
-    }
-  }, [openKeys]);
+    useEffect(() => {
+        if (openKeys.length > 0) {
+        localStorage.setItem('openKeys', JSON.stringify(openKeys));
+        }
+    }, [openKeys]);
 
-  const handleMenuOpenChange = newOpenKeys => {
-    setOpenKeys(newOpenKeys);
-  };
+    const handleMenuOpenChange = newOpenKeys => {
+        setOpenKeys(newOpenKeys);
+    };
 
-  const handleItemClick = ({ key }) => {
-    setSelectedKey(key);
-  };
+    const handleItemClick = ({ key, label }) => {
+        setSelectedKey(key);
+        console.log("Menu item clicked:", label);
+    };
     
     return (
         <>

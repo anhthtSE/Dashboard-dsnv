@@ -18,6 +18,7 @@ import {
 const data = [
     {
         key: '1',
+        status: 'active',
         id: '1',
         departmentName: 'Phòng A',
         manager: 'Nguyễn Văn A',
@@ -33,6 +34,7 @@ const data = [
     },
     {
         key: '2',
+        status: 'inactive',
         id: '2',
         departmentName: 'Phòng B',
         manager: 'Nguyễn Văn B',
@@ -48,6 +50,7 @@ const data = [
     },
     {
         key: '3',
+        status: 'active',
         id: '3',
         departmentName: 'Phòng B',
         manager: 'Nguyễn Văn B',
@@ -63,6 +66,7 @@ const data = [
     },
     {
         key: '4',
+        status: 'inactive',
         id: '4',
         departmentName: 'Phòng B',
         manager: 'Nguyễn Văn B',
@@ -119,13 +123,12 @@ const data = [
     },
 ];
 
+    const getStatusColor = (status) => {
+        return status === 'active' ? '#1677ff' : 'gray'; // Hoặc bạn có thể sử dụng mã màu bạn muốn
+    };
+
     const getRandomColor = () => {
         const colors = ['#f50', '#2db7f5', '#87d068', '#108ee9', '#eb2f96', '#52c41a', '#1890ff'];
-        return colors[Math.floor(Math.random() * colors.length)];
-    };
-    
-    const getRandomColorByID = () => {
-        const colors = ['gray', '#1677ff'];
         return colors[Math.floor(Math.random() * colors.length)];
     };
 
@@ -135,14 +138,13 @@ const data = [
         dataIndex: 'more',
         key: 'more',
         render: () => <EllipsisOutlined/>,
-      
     },
     {
         title: '',
-        dataIndex: 'user',
-        key: 'user',
-        render: () => (
-            <Avatar style={{ backgroundColor: getRandomColorByID()}} size={'small'}><UserOutlined/></Avatar>
+        dataIndex: 'status',
+        key: 'status',
+        render: (active) => (
+            <Avatar style={{ backgroundColor: getStatusColor(active)}} size={'small'}><UserOutlined/></Avatar>
         ),
         
     },

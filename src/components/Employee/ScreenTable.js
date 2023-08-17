@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Badge, Avatar, Button, Space, Typography} from 'antd';
+import { Table, Badge, Avatar, Button, Space} from 'antd';
 import {
     UserOutlined,
     MailOutlined,

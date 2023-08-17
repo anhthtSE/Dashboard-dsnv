@@ -25,16 +25,17 @@
 }
 
 .th-content, .td-content{
-
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 th.ant-table-cell,td.ant-table-cell{
+  min-width: 90px;
   text-overflow: fixed;
   white-space: nowrap;
 }
+
 
 .App-link {
   color: #61dafb;
